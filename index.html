@@ -1,9 +1,12 @@
+This is a **complete, balanced 100‑question HTML exam** — 50 MCQs, 25 True/False, and 25 short‑answer — with a 1‑hour timer, progress tracking, and auto‑scoring. Replace your `index.html` with this code to go live instantly.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> HTML Fundamentals Exam</title>
+    <title>HTML Full Exam (100 Questions)</title>
     <style>
         :root {
             --bg: #f0f4f8;
@@ -46,7 +49,7 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             width: 100%;
-            max-width: 750px;
+            max-width: 800px;
             overflow: hidden;
             border: 1px solid var(--border);
         }
@@ -124,6 +127,33 @@
             width: 0%;
         }
 
+        .nav-dots {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            align-items: center;
+            max-height: 60px;
+            overflow-y: auto;
+            margin-top: 8px;
+            padding-bottom: 4px;
+        }
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d1d5db;
+            transition: all var(--transition);
+            flex-shrink: 0;
+        }
+        .nav-dot.active {
+            background: var(--primary);
+            width: 10px;
+            height: 10px;
+        }
+        .nav-dot.answered {
+            background: #a5b4fc;
+        }
+
         .exam-body {
             padding: 24px 28px 20px;
         }
@@ -136,7 +166,7 @@
             margin-bottom: 6px;
         }
         .question-text {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
             margin-bottom: 22px;
             line-height: 1.5;
@@ -153,7 +183,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 14px 16px;
+            padding: 12px 14px;
             border: 2px solid var(--border);
             border-radius: 12px;
             cursor: pointer;
@@ -172,19 +202,9 @@
             background: #eef1ff;
             box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.1);
         }
-        .option-item.correct-reveal {
-            border-color: var(--success) !important;
-            background: #f0fdf4 !important;
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1) !important;
-        }
-        .option-item.wrong-reveal {
-            border-color: var(--danger) !important;
-            background: #fef2f2 !important;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
-        }
         .option-radio {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             border: 2px solid #cbd5e1;
             flex-shrink: 0;
@@ -200,15 +220,15 @@
         }
         .option-item.selected .option-radio::after {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background: #fff;
             border-radius: 50%;
         }
         .option-label {
             font-weight: 600;
             color: var(--primary);
-            min-width: 26px;
+            min-width: 24px;
         }
         .option-text {
             flex: 1;
@@ -229,14 +249,6 @@
             border-color: var(--primary);
             box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.08);
             background: #fff;
-        }
-        .fill-input.correct-reveal {
-            border-color: var(--success) !important;
-            background: #f0fdf4 !important;
-        }
-        .fill-input.wrong-reveal {
-            border-color: var(--danger) !important;
-            background: #fef2f2 !important;
         }
 
         .tf-group {
@@ -266,14 +278,6 @@
             border-color: var(--primary);
             background: #eef1ff;
             box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.1);
-        }
-        .tf-btn.correct-reveal {
-            border-color: var(--success) !important;
-            background: #f0fdf4 !important;
-        }
-        .tf-btn.wrong-reveal {
-            border-color: var(--danger) !important;
-            background: #fef2f2 !important;
         }
 
         .exam-footer {
@@ -338,27 +342,6 @@
             border-color: #c4cdf9;
             background: #f5f7ff;
         }
-        .nav-dots {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .nav-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #d1d5db;
-            transition: all var(--transition);
-        }
-        .nav-dot.active {
-            background: var(--primary);
-            width: 12px;
-            height: 12px;
-        }
-        .nav-dot.answered {
-            background: #a5b4fc;
-        }
 
         .results-screen {
             text-align: center;
@@ -374,9 +357,8 @@
             justify-content: center;
             font-size: 2.6rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            background: conic-gradient(var(--success) var(--score-percent), #e2e8f0 var(--score-percent));
             position: relative;
+            background: conic-gradient(var(--success) var(--score-percent), #e2e8f0 var(--score-percent));
         }
         .results-screen .score-circle::before {
             content: '';
@@ -409,11 +391,10 @@
 <body>
 
     <div class="exam-container" id="examContainer">
-        <!-- Header -->
         <div class="exam-header">
             <div class="title-area">
-                <HTML Fundamentals Exam</h1>
-                <div class="subtitle">Answer all HTML questions within the time limit</div>
+                <h1> HTML Complete Exam</h1>
+                <div class="subtitle">100 questions • 1 hour • Sections A, B & C</div>
             </div>
             <div class="timer-box" id="timerBox">
                 <span class="timer-icon">⏱</span>
@@ -421,124 +402,149 @@
             </div>
         </div>
 
-        <!-- Progress -->
         <div class="progress-wrap">
             <div class="progress-info">
-                <span id="progressLabel">Question 1 of 10</span>
+                <span id="progressLabel">Question 1 of 100</span>
                 <span id="answeredCount">0 answered</span>
             </div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="nav-dots" id="navDots" style="margin-top:8px;justify-content:center;"></div>
+            <div class="nav-dots" id="navDots"></div>
         </div>
 
-        <!-- Body -->
         <div class="exam-body" id="examBody"></div>
 
-        <!-- Footer -->
         <div class="exam-footer" id="examFooter">
             <button class="btn btn-prev" id="btnPrev" disabled>⬅ Previous</button>
             <button class="btn btn-next" id="btnNext">Next ➡</button>
             <button class="btn btn-submit" id="btnSubmit" style="display:none;">✅ Submit Exam</button>
         </div>
 
-        <!-- Results (hidden by default) -->
         <div class="results-screen" id="resultsScreen" style="display:none;"></div>
     </div>
 
     <script>
         (function() {
             // ──────────────────────────────────────
-            // HTML EXAM QUESTIONS (1 hour)
+            // 100 HTML QUESTIONS (Balanced)
             // ──────────────────────────────────────
             const questions = [
-                {
-                    id: 1,
-                    type: 'mcq',
-                    question: 'What does HTML stand for?',
-                    options: [
-                        'Hyper Text Markup Language',
-                        'High Tech Modern Language',
-                        'Home Tool Markup Language',
-                        'Hyperlinks and Text Markup Language'
-                    ],
-                    answer: 0, // index 0 = Hyper Text Markup Language
-                },
-                {
-                    id: 2,
-                    type: 'fill',
-                    question: 'Which HTML tag is used to define the largest heading? (Enter only the tag name, e.g., p)',
-                    answer: 'h1',
-                },
-                {
-                    id: 3,
-                    type: 'mcq',
-                    question: 'Which tag is used to create a hyperlink in HTML?',
-                    options: ['<link>', '<a>', '<href>', '<url>'],
-                    answer: 1,
-                },
-                {
-                    id: 4,
-                    type: 'tf',
-                    question: 'The <img> tag requires a closing tag.',
-                    answer: false, // it's self-closing
-                },
-                {
-                    id: 5,
-                    type: 'mcq',
-                    question: 'Which attribute is used to specify the URL of an image in an <img> tag?',
-                    options: ['href', 'src', 'link', 'url'],
-                    answer: 1,
-                },
-                {
-                    id: 6,
-                    type: 'fill',
-                    question: 'What is the correct HTML element for inserting a line break? (Enter the tag name only)',
-                    answer: 'br',
-                },
-                {
-                    id: 7,
-                    type: 'mcq',
-                    question: 'Which of the following is the correct way to create a numbered list?',
-                    options: ['<ul>', '<ol>', '<list>', '<nl>'],
-                    answer: 1,
-                },
-                {
-                    id: 8,
-                    type: 'tf',
-                    question: 'The <title> tag belongs inside the <body> section.',
-                    answer: false, // it belongs in the <head>
-                },
-                {
-                    id: 9,
-                    type: 'mcq',
-                    question: 'Which HTML element is used to define the structure of an HTML document and must contain <head> and <body>?',
-                    options: ['<html>', '<document>', '<root>', '<page>'],
-                    answer: 0,
-                },
-                {
-                    id: 10,
-                    type: 'fill',
-                    question: 'What attribute is used to provide alternative text for an image? (Enter the attribute name only)',
-                    answer: 'alt',
-                }
+                // ── SECTION A: MCQs (1–50) ──
+                { id: 1, type: 'mcq', question: 'What does HTML stand for?', options: ['Hyper Text Markup Language', 'High Tech Modern Language', 'Home Tool Markup Language', 'Hyperlinks and Text Markup Language'], answer: 0 },
+                { id: 2, type: 'mcq', question: 'Which tag creates a hyperlink?', options: ['<link>', '<a>', '<href>', '<url>'], answer: 1 },
+                { id: 3, type: 'mcq', question: 'Which tag inserts an image?', options: ['<picture>', '<img>', '<image>', '<src>'], answer: 1 },
+                { id: 4, type: 'mcq', question: 'Which attribute specifies the image source?', options: ['href', 'src', 'alt', 'link'], answer: 1 },
+                { id: 5, type: 'mcq', question: 'Which tag creates a paragraph?', options: ['<para>', '<p>', '<text>', '<paragraph>'], answer: 1 },
+                { id: 6, type: 'mcq', question: 'Which tag creates the largest heading?', options: ['<h6>', '<head>', '<h1>', '<heading>'], answer: 2 },
+                { id: 7, type: 'mcq', question: 'Which tag creates a line break?', options: ['<lb>', '<br>', '<break>', '<newline>'], answer: 1 },
+                { id: 8, type: 'mcq', question: 'Which tag creates an unordered list?', options: ['<ol>', '<ul>', '<li>', '<list>'], answer: 1 },
+                { id: 9, type: 'mcq', question: 'Which tag creates an ordered list?', options: ['<ol>', '<ul>', '<li>', '<list>'], answer: 0 },
+                { id: 10, type: 'mcq', question: 'Which tag defines a list item?', options: ['<li>', '<item>', '<listitem>', '<ul>'], answer: 0 },
+                { id: 11, type: 'mcq', question: 'Which tag creates a table?', options: ['<tab>', '<table>', '<tr>', '<td>'], answer: 1 },
+                { id: 12, type: 'mcq', question: 'Which tag creates a table row?', options: ['<td>', '<tr>', '<th>', '<table>'], answer: 1 },
+                { id: 13, type: 'mcq', question: 'Which tag creates a table cell?', options: ['<tr>', '<th>', '<td>', '<cell>'], answer: 2 },
+                { id: 14, type: 'mcq', question: 'Which tag creates a form?', options: ['<form>', '<input>', '<button>', '<field>'], answer: 0 },
+                { id: 15, type: 'mcq', question: 'Which input type creates a password field?', options: ['text', 'password', 'email', 'number'], answer: 1 },
+                { id: 16, type: 'mcq', question: 'Which input type creates a checkbox?', options: ['radio', 'checkbox', 'select', 'toggle'], answer: 1 },
+                { id: 17, type: 'mcq', question: 'Which input type creates a radio button?', options: ['radio', 'checkbox', 'button', 'toggle'], answer: 0 },
+                { id: 18, type: 'mcq', question: 'Which attribute makes an input mandatory?', options: ['validate', 'required', 'mandatory', 'pattern'], answer: 1 },
+                { id: 19, type: 'mcq', question: 'Which tag creates a dropdown list?', options: ['<dropdown>', '<select>', '<list>', '<input>'], answer: 1 },
+                { id: 20, type: 'mcq', question: 'Which tag creates a multi-line text area?', options: ['<input>', '<textarea>', '<textbox>', '<editor>'], answer: 1 },
+                { id: 21, type: 'mcq', question: 'Which tag displays the page title in the browser tab?', options: ['<head>', '<title>', '<meta>', '<header>'], answer: 1 },
+                { id: 22, type: 'mcq', question: 'Which tag is used to provide metadata?', options: ['<meta>', '<data>', '<info>', '<head>'], answer: 0 },
+                { id: 23, type: 'mcq', question: 'Which tag defines the body content?', options: ['<body>', '<content>', '<main>', '<html>'], answer: 0 },
+                { id: 24, type: 'mcq', question: 'Which is the correct HTML comment syntax?', options: ['<!-- comment -->', '// comment', '/* comment */', '# comment'], answer: 0 },
+                { id: 25, type: 'mcq', question: 'Which tag makes text bold?', options: ['<b>', '<strong>', '<bold>', '<i>'], answer: 0 },
+                { id: 26, type: 'mcq', question: 'Which tag makes text italic?', options: ['<em>', '<i>', '<italic>', '<u>'], answer: 1 },
+                { id: 27, type: 'mcq', question: 'Which tag underlines text?', options: ['<underline>', '<u>', '<ins>', '<b>'], answer: 1 },
+                { id: 28, type: 'mcq', question: 'Which tag inserts a horizontal line?', options: ['<line>', '<hr>', '<br>', '<rule>'], answer: 1 },
+                { id: 29, type: 'mcq', question: 'Which attribute opens a link in a new tab?', options: ['href', 'target', 'rel', 'new'], answer: 1 },
+                { id: 30, type: 'mcq', question: 'Which value is used with target to open in a new tab?', options: ['_new', '_blank', '_tab', 'new'], answer: 1 },
+                { id: 31, type: 'mcq', question: 'Which tag groups block elements?', options: ['<span>', '<div>', '<section>', '<group>'], answer: 1 },
+                { id: 32, type: 'mcq', question: 'Which tag groups inline elements?', options: ['<span>', '<div>', '<p>', '<inline>'], answer: 0 },
+                { id: 33, type: 'mcq', question: 'Which tag embeds audio?', options: ['<sound>', '<audio>', '<music>', '<media>'], answer: 1 },
+                { id: 34, type: 'mcq', question: 'Which tag embeds video?', options: ['<media>', '<movie>', '<video>', '<play>'], answer: 2 },
+                { id: 35, type: 'mcq', question: 'Which attribute shows controls for audio/video?', options: ['controls', 'play', 'visible', 'show'], answer: 0 },
+                { id: 36, type: 'mcq', question: 'Which tag defines navigation links?', options: ['<nav>', '<menu>', '<links>', '<navbar>'], answer: 0 },
+                { id: 37, type: 'mcq', question: 'Which tag defines a section?', options: ['<div>', '<section>', '<part>', '<area>'], answer: 1 },
+                { id: 38, type: 'mcq', question: 'Which tag defines an article?', options: ['<article>', '<post>', '<blog>', '<content>'], answer: 0 },
+                { id: 39, type: 'mcq', question: 'Which tag defines a footer?', options: ['<bottom>', '<footer>', '<end>', '<foot>'], answer: 1 },
+                { id: 40, type: 'mcq', question: 'Which tag defines a header?', options: ['<top>', '<head>', '<header>', '<banner>'], answer: 2 },
+                { id: 41, type: 'mcq', question: 'Which tag defines the main content?', options: ['<body>', '<main>', '<primary>', '<core>'], answer: 1 },
+                { id: 42, type: 'mcq', question: 'Which tag creates a button?', options: ['<input>', '<btn>', '<button>', '<click>'], answer: 2 },
+                { id: 43, type: 'mcq', question: 'Which attribute gives an element a unique identifier?', options: ['class', 'id', 'name', 'unique'], answer: 1 },
+                { id: 44, type: 'mcq', question: 'Which attribute assigns CSS classes?', options: ['class', 'style', 'id', 'css'], answer: 0 },
+                { id: 45, type: 'mcq', question: 'Which tag links an external CSS file?', options: ['<style>', '<link>', '<css>', '<script>'], answer: 1 },
+                { id: 46, type: 'mcq', question: 'Which tag embeds internal CSS?', options: ['<css>', '<style>', '<script>', '<link>'], answer: 1 },
+                { id: 47, type: 'mcq', question: 'Which tag embeds JavaScript?', options: ['<java>', '<script>', '<js>', '<code>'], answer: 1 },
+                { id: 48, type: 'mcq', question: 'Which attribute specifies inline CSS?', options: ['class', 'id', 'style', 'css'], answer: 2 },
+                { id: 49, type: 'mcq', question: 'Which HTML version is currently standard?', options: ['HTML4', 'XHTML', 'HTML5', 'HTML6'], answer: 2 },
+                { id: 50, type: 'mcq', question: 'What declaration starts an HTML5 document?', options: ['<!DOCTYPE html>', '<html5>', '<!DOCTYPE html5>', '<html>'], answer: 0 },
+
+                // ── SECTION B: True/False (51–75) ──
+                { id: 51, type: 'tf', question: 'HTML is a programming language.', answer: false },
+                { id: 52, type: 'tf', question: 'The <img> tag requires a closing tag.', answer: false },
+                { id: 53, type: 'tf', question: 'The <title> tag is placed inside <head>.', answer: true },
+                { id: 54, type: 'tf', question: '<h1> is larger than <h6>.', answer: true },
+                { id: 55, type: 'tf', question: '<ol> creates a numbered list.', answer: true },
+                { id: 56, type: 'tf', question: '<ul> creates a numbered list.', answer: false },
+                { id: 57, type: 'tf', question: 'The src attribute is used with images.', answer: true },
+                { id: 58, type: 'tf', question: 'The href attribute is used with links.', answer: true },
+                { id: 59, type: 'tf', question: 'HTML comments are visible on the webpage.', answer: false },
+                { id: 60, type: 'tf', question: 'The <br> tag creates a line break.', answer: true },
+                { id: 61, type: 'tf', question: 'The <body> tag contains visible content.', answer: true },
+                { id: 62, type: 'tf', question: 'The <head> tag contains metadata.', answer: true },
+                { id: 63, type: 'tf', question: 'The <table> tag creates tables.', answer: true },
+                { id: 64, type: 'tf', question: '<tr> defines a table row.', answer: true },
+                { id: 65, type: 'tf', question: '<td> defines a table cell.', answer: true },
+                { id: 66, type: 'tf', question: '<form> is used for user input.', answer: true },
+                { id: 67, type: 'tf', question: 'The required attribute makes a field optional.', answer: false },
+                { id: 68, type: 'tf', question: '<textarea> creates a multi-line input.', answer: true },
+                { id: 69, type: 'tf', question: '<audio> can play sound files.', answer: true },
+                { id: 70, type: 'tf', question: '<video> can play video files.', answer: true },
+                { id: 71, type: 'tf', question: '<nav> is used for navigation.', answer: true },
+                { id: 72, type: 'tf', question: '<footer> usually contains page footer information.', answer: true },
+                { id: 73, type: 'tf', question: '<header> usually contains introductory content.', answer: true },
+                { id: 74, type: 'tf', question: '<main> contains the primary content.', answer: true },
+                { id: 75, type: 'tf', question: 'HTML tags are case-sensitive in HTML5.', answer: false },
+
+                // ── SECTION C: Short Answer (76–100) ──
+                { id: 76, type: 'fill', question: 'Write the HTML tag for the largest heading.', answer: 'h1' },
+                { id: 77, type: 'fill', question: 'Write the HTML tag for a paragraph.', answer: 'p' },
+                { id: 78, type: 'fill', question: 'Write the HTML tag for a hyperlink.', answer: 'a' },
+                { id: 79, type: 'fill', question: 'Write the HTML tag for an image.', answer: 'img' },
+                { id: 80, type: 'fill', question: 'Write the HTML tag for a line break.', answer: 'br' },
+                { id: 81, type: 'fill', question: 'Write the HTML tag for a horizontal line.', answer: 'hr' },
+                { id: 82, type: 'fill', question: 'Write the HTML tag for an unordered list.', answer: 'ul' },
+                { id: 83, type: 'fill', question: 'Write the HTML tag for an ordered list.', answer: 'ol' },
+                { id: 84, type: 'fill', question: 'Write the HTML tag for a list item.', answer: 'li' },
+                { id: 85, type: 'fill', question: 'Write the HTML tag for a table.', answer: 'table' },
+                { id: 86, type: 'fill', question: 'Write the HTML tag for a table row.', answer: 'tr' },
+                { id: 87, type: 'fill', question: 'Write the HTML tag for a table cell.', answer: 'td' },
+                { id: 88, type: 'fill', question: 'Write the HTML tag for a form.', answer: 'form' },
+                { id: 89, type: 'fill', question: 'Write the HTML tag for a button.', answer: 'button' },
+                { id: 90, type: 'fill', question: 'Write the HTML tag for a text area.', answer: 'textarea' },
+                { id: 91, type: 'fill', question: 'Write the HTML tag for a dropdown list.', answer: 'select' },
+                { id: 92, type: 'fill', question: 'Write the syntax for an HTML comment (opening and closing).', answer: '<!-- -->' },
+                { id: 93, type: 'fill', question: 'Write the HTML tag for bold text.', answer: 'b' },
+                { id: 94, type: 'fill', question: 'Write the HTML tag for italic text.', answer: 'i' },
+                { id: 95, type: 'fill', question: 'Write the HTML tag for underlined text.', answer: 'u' },
+                { id: 96, type: 'fill', question: 'Write the HTML tag for audio.', answer: 'audio' },
+                { id: 97, type: 'fill', question: 'Write the HTML tag for video.', answer: 'video' },
+                { id: 98, type: 'fill', question: 'Write the HTML tag for navigation.', answer: 'nav' },
+                { id: 99, type: 'fill', question: 'Write the HTML tag for a footer.', answer: 'footer' },
+                { id: 100, type: 'fill', question: 'Write the HTML declaration for HTML5.', answer: '<!DOCTYPE html>' }
             ];
 
-            // ──────────────────────────────────────
-            // STATE
-            // ──────────────────────────────────────
             const totalQuestions = questions.length;
-            const totalTime = 60 * 60; // 60 minutes in seconds
+            const totalTime = 60 * 60; // 1 hour
             let currentIndex = 0;
             let userAnswers = new Array(totalQuestions).fill(null);
             let timeRemaining = totalTime;
             let timerInterval = null;
             let examSubmitted = false;
 
-            // ──────────────────────────────────────
-            // DOM REFS
-            // ──────────────────────────────────────
             const examBody = document.getElementById('examBody');
             const examFooter = document.getElementById('examFooter');
             const resultsScreen = document.getElementById('resultsScreen');
@@ -560,7 +566,7 @@
 
             function updateTimerUI() {
                 timerDisplay.textContent = formatTime(timeRemaining);
-                if (timeRemaining <= 120) { // warn at 2 minutes left
+                if (timeRemaining <= 300) { // 5 minutes warning
                     timerBox.classList.add('warning');
                 } else {
                     timerBox.classList.remove('warning');
@@ -597,10 +603,6 @@
                 }
             }
 
-            function getSavedAnswer(index) {
-                return userAnswers[index];
-            }
-
             function saveAnswer(index, value) {
                 userAnswers[index] = value;
                 updateProgressUI();
@@ -608,7 +610,7 @@
 
             function renderQuestion(index) {
                 const q = questions[index];
-                const saved = getSavedAnswer(index);
+                const saved = userAnswers[index];
                 let html = '';
                 html += `<div class="question-number">Question ${q.id} • ${q.type.toUpperCase()}</div>`;
                 html += `<div class="question-text">${q.question}</div>`;
@@ -618,28 +620,20 @@
                     const labels = ['A', 'B', 'C', 'D'];
                     q.options.forEach((opt, i) => {
                         const selected = (saved === i) ? ' selected' : '';
-                        html += `
-                            <li class="option-item${selected}" data-opt-index="${i}" data-q-index="${index}">
-                                <div class="option-radio"></div>
-                                <span class="option-label">${labels[i]}.</span>
-                                <span class="option-text">${opt}</span>
-                            </li>`;
+                        html += `<li class="option-item${selected}" data-opt-index="${i}"><div class="option-radio"></div><span class="option-label">${labels[i]}.</span><span class="option-text">${opt}</span></li>`;
                     });
                     html += '</ul>';
                 } else if (q.type === 'tf') {
                     html += '<div class="tf-group">';
-                    const tfOptions = [
-                        { val: true, label: '✅ True' },
-                        { val: false, label: '❌ False' },
-                    ];
+                    const tfOptions = [{ val: true, label: '✅ True' }, { val: false, label: '❌ False' }];
                     tfOptions.forEach(opt => {
                         const selected = (saved === opt.val) ? ' selected' : '';
-                        html += `<div class="tf-btn${selected}" data-tf-val="${opt.val}" data-q-index="${index}">${opt.label}</div>`;
+                        html += `<div class="tf-btn${selected}" data-tf-val="${opt.val}">${opt.label}</div>`;
                     });
                     html += '</div>';
                 } else if (q.type === 'fill') {
                     const val = (saved !== null) ? saved : '';
-                    html += `<input type="text" class="fill-input" id="fillInput" data-q-index="${index}" placeholder="Type your answer..." value="${escapeHtml(val)}" autocomplete="off">`;
+                    html += `<input type="text" class="fill-input" id="fillInput" placeholder="Type your answer..." value="${escapeHtml(val)}" autocomplete="off">`;
                 }
 
                 examBody.innerHTML = html;
@@ -656,39 +650,37 @@
 
             function attachEventListeners(index) {
                 const q = questions[index];
-
-                // MCQ
-                const optionItems = examBody.querySelectorAll('.option-item');
-                optionItems.forEach(item => {
-                    item.addEventListener('click', function() {
-                        if (examSubmitted) return;
-                        const optIndex = parseInt(this.dataset.optIndex);
-                        optionItems.forEach(el => el.classList.remove('selected'));
-                        this.classList.add('selected');
-                        saveAnswer(index, optIndex);
+                if (q.type === 'mcq') {
+                    const items = examBody.querySelectorAll('.option-item');
+                    items.forEach(item => {
+                        item.addEventListener('click', function() {
+                            if (examSubmitted) return;
+                            const optIndex = parseInt(this.dataset.optIndex);
+                            items.forEach(el => el.classList.remove('selected'));
+                            this.classList.add('selected');
+                            saveAnswer(index, optIndex);
+                        });
                     });
-                });
-
-                // True/False
-                const tfBtns = examBody.querySelectorAll('.tf-btn');
-                tfBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        if (examSubmitted) return;
-                        const val = this.dataset.tfVal === 'true';
-                        tfBtns.forEach(el => el.classList.remove('selected'));
-                        this.classList.add('selected');
-                        saveAnswer(index, val);
+                } else if (q.type === 'tf') {
+                    const btns = examBody.querySelectorAll('.tf-btn');
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            if (examSubmitted) return;
+                            const val = this.dataset.tfVal === 'true';
+                            btns.forEach(el => el.classList.remove('selected'));
+                            this.classList.add('selected');
+                            saveAnswer(index, val);
+                        });
                     });
-                });
-
-                // Fill-in-the-blank
-                const fillInput = examBody.querySelector('#fillInput');
-                if (fillInput) {
-                    fillInput.addEventListener('input', function() {
-                        if (examSubmitted) return;
-                        saveAnswer(index, this.value.trim());
-                    });
-                    setTimeout(() => fillInput.focus(), 100);
+                } else if (q.type === 'fill') {
+                    const input = examBody.querySelector('#fillInput');
+                    if (input) {
+                        input.addEventListener('input', function() {
+                            if (examSubmitted) return;
+                            saveAnswer(index, this.value.trim());
+                        });
+                        setTimeout(() => input.focus(), 100);
+                    }
                 }
             }
 
@@ -698,12 +690,8 @@
                 renderQuestion(currentIndex);
             }
 
-            btnPrev.addEventListener('click', () => {
-                if (currentIndex > 0) goToQuestion(currentIndex - 1);
-            });
-            btnNext.addEventListener('click', () => {
-                if (currentIndex < totalQuestions - 1) goToQuestion(currentIndex + 1);
-            });
+            btnPrev.addEventListener('click', () => { if (currentIndex > 0) goToQuestion(currentIndex - 1); });
+            btnNext.addEventListener('click', () => { if (currentIndex < totalQuestions - 1) goToQuestion(currentIndex + 1); });
 
             function calculateScore() {
                 let correct = 0;
@@ -711,16 +699,11 @@
                 questions.forEach((q, i) => {
                     const userAns = userAnswers[i];
                     let isCorrect = false;
-                    if (q.type === 'mcq') {
-                        isCorrect = (userAns === q.answer);
-                    } else if (q.type === 'tf') {
-                        isCorrect = (userAns === q.answer);
-                    } else if (q.type === 'fill') {
-                        if (userAns === null || userAns === '') {
-                            isCorrect = false;
-                        } else {
-                            isCorrect = (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase());
-                        }
+                    if (q.type === 'mcq') isCorrect = (userAns === q.answer);
+                    else if (q.type === 'tf') isCorrect = (userAns === q.answer);
+                    else if (q.type === 'fill') {
+                        if (userAns === null || userAns === '') isCorrect = false;
+                        else isCorrect = (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase());
                     }
                     if (isCorrect) correct++;
                     details.push({ question: q, userAnswer: userAns, isCorrect });
@@ -731,18 +714,17 @@
             function renderResults(scoreData) {
                 const { correct, total, details } = scoreData;
                 const percent = Math.round((correct / total) * 100);
-                let grade = '';
-                let emoji = '';
-                if (percent >= 90) { grade = 'Excellent! ; }
-                else if (percent >= 70) { grade = 'Good Job! ; }
-                else if (percent >= 50) { grade = 'Not Bad! }
-                else { grade = 'Keep Studying! ' }
+                let grade = '', emoji = '';
+                if (percent >= 90) { grade = 'Excellent! 🎉'; }
+                else if (percent >= 70) { grade = 'Good Job! 👍'; emoji = '😊'; }
+                else if (percent >= 50) { grade = 'Not Bad! 📚'; emoji = '🤔'; }
+                else { grade = 'Keep Studying! '; emoji = '📖'; }
 
                 let html = '';
                 html += `<span class="emoji-big">${emoji}</span>`;
                 html += `<div class="score-circle" style="--score-percent:${percent}%;"><span>${percent}%</span></div>`;
                 html += `<div class="results-grade">${grade}</div>`;
-                html += `<div class="results-detail">You answered <strong>${correct} out of ${total}</strong> questions correctly.<br>Time remaining: <strong>${formatTime(timeRemaining)}</strong></div>`;
+                html += `<div class="results-detail">You answered <strong>${correct} out of ${total}</strong> correctly.<br>Time remaining: <strong>${formatTime(timeRemaining)}</strong></div>`;
 
                 html += '<div style="text-align:left;margin-top:20px;max-height:300px;overflow-y:auto;padding-right:8px;">';
                 details.forEach((d, i) => {
@@ -750,23 +732,23 @@
                     const bgColor = d.isCorrect ? '#f0fdf4' : '#fef2f2';
                     const borderColor = d.isCorrect ? '#22c55e' : '#ef4444';
                     const q = d.question;
-                    let correctAnswerStr = '';
-                    if (q.type === 'mcq') correctAnswerStr = q.options[q.answer];
-                    else if (q.type === 'tf') correctAnswerStr = q.answer ? 'True' : 'False';
-                    else correctAnswerStr = q.answer;
+                    let correctStr = '';
+                    if (q.type === 'mcq') correctStr = q.options[q.answer];
+                    else if (q.type === 'tf') correctStr = q.answer ? 'True' : 'False';
+                    else correctStr = q.answer;
 
-                    let userAnswerStr = 'No answer';
+                    let userStr = 'No answer';
                     if (d.userAnswer !== null && d.userAnswer !== '') {
-                        if (q.type === 'mcq') userAnswerStr = q.options[d.userAnswer] || 'Invalid';
-                        else if (q.type === 'tf') userAnswerStr = d.userAnswer ? 'True' : 'False';
-                        else userAnswerStr = d.userAnswer;
+                        if (q.type === 'mcq') userStr = q.options[d.userAnswer] || 'Invalid';
+                        else if (q.type === 'tf') userStr = d.userAnswer ? 'True' : 'False';
+                        else userStr = d.userAnswer;
                     }
 
                     html += `
                         <div style="background:${bgColor};border-left:4px solid ${borderColor};border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:0.9rem;">
                             <strong>Q${i+1}:</strong> ${q.question}<br>
-                            <span style="color:#64748b;">Your answer:</span> ${userAnswerStr}<br>
-                            <span style="color:#64748b;">Correct answer:</span> ${correctAnswerStr} ${icon}
+                            <span style="color:#64748b;">Your answer:</span> ${userStr}<br>
+                            <span style="color:#64748b;">Correct answer:</span> ${correctStr} ${icon}
                         </div>`;
                 });
                 html += '</div>';
@@ -783,18 +765,14 @@
                 if (examSubmitted) return;
                 examSubmitted = true;
                 clearInterval(timerInterval);
-                const scoreData = calculateScore();
-                renderResults(scoreData);
+                renderResults(calculateScore());
                 timerBox.classList.remove('warning');
                 timerDisplay.textContent = formatTime(timeRemaining);
             }
 
             btnSubmit.addEventListener('click', () => {
                 const unanswered = userAnswers.filter(a => a === null || a === '').length;
-                if (unanswered > 0) {
-                    const confirmSubmit = confirm(`You have ${unanswered} unanswered question(s). Are you sure you want to submit?`);
-                    if (!confirmSubmit) return;
-                }
+                if (unanswered > 0 && !confirm(`You have ${unanswered} unanswered question(s). Submit anyway?`)) return;
                 submitExam();
             });
 
@@ -805,7 +783,7 @@
                     updateTimerUI();
                     if (timeRemaining <= 0) {
                         clearInterval(timerInterval);
-                        alert('Time is up! Your exam will be submitted automatically.');
+                        alert('⏰ Time is up! Your exam will be submitted automatically.');
                         submitExam();
                     }
                 }, 1000);
@@ -813,19 +791,13 @@
 
             document.addEventListener('keydown', function(e) {
                 if (examSubmitted) return;
-                if (e.key === 'ArrowLeft' && currentIndex > 0) {
-                    e.preventDefault();
-                    goToQuestion(currentIndex - 1);
-                } else if (e.key === 'ArrowRight' && currentIndex < totalQuestions - 1) {
-                    e.preventDefault();
-                    goToQuestion(currentIndex + 1);
-                } else if (e.key === 'Enter' && currentIndex === totalQuestions - 1) {
-                    e.preventDefault();
-                    btnSubmit.click();
-                }
+                if (e.key === 'ArrowLeft' && currentIndex > 0) { e.preventDefault(); goToQuestion(currentIndex - 1); }
+                else if (e.key === 'ArrowRight' && currentIndex < totalQuestions - 1) { e.preventDefault(); goToQuestion(currentIndex + 1); }
+                else if (e.key === 'Enter' && currentIndex === totalQuestions - 1) { e.preventDefault(); btnSubmit.click(); }
+
                 const q = questions[currentIndex];
                 if (q.type === 'mcq' && !examSubmitted) {
-                    const keyMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, '1': 0, '2': 1, '3': 2, '4': 3 };
+                    const keyMap = { 'a':0, 'b':1, 'c':2, 'd':3, '1':0, '2':1, '3':2, '4':3 };
                     const idx = keyMap[e.key.toLowerCase()];
                     if (idx !== undefined && idx < q.options.length) {
                         e.preventDefault();
@@ -833,7 +805,6 @@
                         const items = examBody.querySelectorAll('.option-item');
                         items.forEach(el => el.classList.remove('selected'));
                         if (items[idx]) items[idx].classList.add('selected');
-                        updateProgressUI();
                     }
                 }
                 if (q.type === 'tf' && !examSubmitted) {
@@ -843,14 +814,12 @@
                         const btns = examBody.querySelectorAll('.tf-btn');
                         btns.forEach(el => el.classList.remove('selected'));
                         if (btns[0]) btns[0].classList.add('selected');
-                        updateProgressUI();
                     } else if (e.key.toLowerCase() === 'f' || e.key === '2') {
                         e.preventDefault();
                         saveAnswer(currentIndex, false);
                         const btns = examBody.querySelectorAll('.tf-btn');
                         btns.forEach(el => el.classList.remove('selected'));
                         if (btns[1]) btns[1].classList.add('selected');
-                        updateProgressUI();
                     }
                 }
             });
@@ -870,8 +839,9 @@
             }
 
             initExam();
-            console.log('HTML Exam ready! Use arrow keys, A-D/1-4 for MCQ, T/F for True/False.');
+            console.log(' 100-question HTML exam ready.');
         })();
     </script>
 </body>
 </html>
+```
