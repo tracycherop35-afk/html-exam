@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📝 General Knowledge Exam</title>
+    <title> HTML Fundamentals Exam</title>
     <style>
         :root {
             --bg: #f0f4f8;
@@ -51,7 +51,6 @@
             border: 1px solid var(--border);
         }
 
-        /* Header */
         .exam-header {
             background: linear-gradient(135deg, #4f6ef7 0%, #6366f1 100%);
             color: #fff;
@@ -92,18 +91,13 @@
             animation: pulse 0.7s infinite alternate;
         }
         @keyframes pulse {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.06);
-            }
+            from { transform: scale(1); }
+            to { transform: scale(1.06); }
         }
         .timer-icon {
             font-size: 1.2rem;
         }
 
-        /* Progress Bar */
         .progress-wrap {
             padding: 14px 28px 0;
             background: var(--card-bg);
@@ -130,7 +124,6 @@
             width: 0%;
         }
 
-        /* Body */
         .exam-body {
             padding: 24px 28px 20px;
         }
@@ -150,7 +143,6 @@
             color: var(--text);
         }
 
-        /* Options */
         .options-list {
             list-style: none;
             display: flex;
@@ -222,7 +214,6 @@
             flex: 1;
         }
 
-        /* Fill in the blank */
         .fill-input {
             width: 100%;
             padding: 14px 16px;
@@ -248,7 +239,6 @@
             background: #fef2f2 !important;
         }
 
-        /* True/False */
         .tf-group {
             display: flex;
             gap: 14px;
@@ -286,7 +276,6 @@
             background: #fef2f2 !important;
         }
 
-        /* Footer */
         .exam-footer {
             padding: 18px 28px 24px;
             display: flex;
@@ -371,7 +360,6 @@
             background: #a5b4fc;
         }
 
-        /* Results */
         .results-screen {
             text-align: center;
             padding: 40px 28px;
@@ -424,12 +412,12 @@
         <!-- Header -->
         <div class="exam-header">
             <div class="title-area">
-                <h1>📝 General Knowledge Exam</h1>
-                <div class="subtitle">Answer all questions within the time limit</div>
+                <HTML Fundamentals Exam</h1>
+                <div class="subtitle">Answer all HTML questions within the time limit</div>
             </div>
             <div class="timer-box" id="timerBox">
                 <span class="timer-icon">⏱</span>
-                <span id="timerDisplay">10:00</span>
+                <span id="timerDisplay">60:00</span>
             </div>
         </div>
 
@@ -462,72 +450,88 @@
     <script>
         (function() {
             // ──────────────────────────────────────
-            // EXAM DATA
+            // HTML EXAM QUESTIONS (1 hour)
             // ──────────────────────────────────────
-            const questions = [{
-                id: 1,
-                type: 'mcq',
-                question: 'What is the capital city of France?',
-                options: ['London', 'Berlin', 'Paris', 'Madrid'],
-                answer: 2, // index of correct option (0-based)
-            }, {
-                id: 2,
-                type: 'tf',
-                question: 'The Great Wall of China is visible from space with the naked eye.',
-                answer: false,
-            }, {
-                id: 3,
-                type: 'mcq',
-                question: 'Which planet is known as the Red Planet?',
-                options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
-                answer: 1,
-            }, {
-                id: 4,
-                type: 'fill',
-                question: 'What is the chemical symbol for water? (e.g., CO2)',
-                answer: 'h2o',
-            }, {
-                id: 5,
-                type: 'mcq',
-                question: 'Who wrote the play "Romeo and Juliet"?',
-                options: ['Charles Dickens', 'William Shakespeare', 'Jane Austen', 'Mark Twain'],
-                answer: 1,
-            }, {
-                id: 6,
-                type: 'tf',
-                question: 'Light travels faster than sound.',
-                answer: true,
-            }, {
-                id: 7,
-                type: 'mcq',
-                question: 'What is the largest ocean on Earth?',
-                options: ['Atlantic Ocean', 'Indian Ocean', 'Arctic Ocean', 'Pacific Ocean'],
-                answer: 3,
-            }, {
-                id: 8,
-                type: 'fill',
-                question: 'How many continents are there on Earth? (Enter a number)',
-                answer: '7',
-            }, {
-                id: 9,
-                type: 'mcq',
-                question: 'In which year did World War II end?',
-                options: ['1943', '1944', '1945', '1946'],
-                answer: 2,
-            }, {
-                id: 10,
-                type: 'tf',
-                question: 'Mount Everest is the tallest mountain on Earth from base to peak.',
-                answer: true,
-            }, ];
+            const questions = [
+                {
+                    id: 1,
+                    type: 'mcq',
+                    question: 'What does HTML stand for?',
+                    options: [
+                        'Hyper Text Markup Language',
+                        'High Tech Modern Language',
+                        'Home Tool Markup Language',
+                        'Hyperlinks and Text Markup Language'
+                    ],
+                    answer: 0, // index 0 = Hyper Text Markup Language
+                },
+                {
+                    id: 2,
+                    type: 'fill',
+                    question: 'Which HTML tag is used to define the largest heading? (Enter only the tag name, e.g., p)',
+                    answer: 'h1',
+                },
+                {
+                    id: 3,
+                    type: 'mcq',
+                    question: 'Which tag is used to create a hyperlink in HTML?',
+                    options: ['<link>', '<a>', '<href>', '<url>'],
+                    answer: 1,
+                },
+                {
+                    id: 4,
+                    type: 'tf',
+                    question: 'The <img> tag requires a closing tag.',
+                    answer: false, // it's self-closing
+                },
+                {
+                    id: 5,
+                    type: 'mcq',
+                    question: 'Which attribute is used to specify the URL of an image in an <img> tag?',
+                    options: ['href', 'src', 'link', 'url'],
+                    answer: 1,
+                },
+                {
+                    id: 6,
+                    type: 'fill',
+                    question: 'What is the correct HTML element for inserting a line break? (Enter the tag name only)',
+                    answer: 'br',
+                },
+                {
+                    id: 7,
+                    type: 'mcq',
+                    question: 'Which of the following is the correct way to create a numbered list?',
+                    options: ['<ul>', '<ol>', '<list>', '<nl>'],
+                    answer: 1,
+                },
+                {
+                    id: 8,
+                    type: 'tf',
+                    question: 'The <title> tag belongs inside the <body> section.',
+                    answer: false, // it belongs in the <head>
+                },
+                {
+                    id: 9,
+                    type: 'mcq',
+                    question: 'Which HTML element is used to define the structure of an HTML document and must contain <head> and <body>?',
+                    options: ['<html>', '<document>', '<root>', '<page>'],
+                    answer: 0,
+                },
+                {
+                    id: 10,
+                    type: 'fill',
+                    question: 'What attribute is used to provide alternative text for an image? (Enter the attribute name only)',
+                    answer: 'alt',
+                }
+            ];
 
             // ──────────────────────────────────────
             // STATE
             // ──────────────────────────────────────
             const totalQuestions = questions.length;
-            const totalTime = 10 * 60; // 10 minutes in seconds
+            const totalTime = 60 * 60; // 60 minutes in seconds
             let currentIndex = 0;
-            let userAnswers = new Array(totalQuestions).fill(null); // null = unanswered
+            let userAnswers = new Array(totalQuestions).fill(null);
             let timeRemaining = totalTime;
             let timerInterval = null;
             let examSubmitted = false;
@@ -548,9 +552,6 @@
             const btnNext = document.getElementById('btnNext');
             const btnSubmit = document.getElementById('btnSubmit');
 
-            // ──────────────────────────────────────
-            // FUNCTIONS
-            // ──────────────────────────────────────
             function formatTime(seconds) {
                 const min = Math.floor(seconds / 60);
                 const sec = seconds % 60;
@@ -559,7 +560,7 @@
 
             function updateTimerUI() {
                 timerDisplay.textContent = formatTime(timeRemaining);
-                if (timeRemaining <= 60) {
+                if (timeRemaining <= 120) { // warn at 2 minutes left
                     timerBox.classList.add('warning');
                 } else {
                     timerBox.classList.remove('warning');
@@ -567,7 +568,7 @@
             }
 
             function updateProgressUI() {
-                const answered = userAnswers.filter(a => a !== null).length;
+                const answered = userAnswers.filter(a => a !== null && a !== '').length;
                 progressFill.style.width = `${(answered / totalQuestions) * 100}%`;
                 progressLabel.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
                 answeredCount.textContent = `${answered} answered`;
@@ -579,7 +580,7 @@
                 for (let i = 0; i < totalQuestions; i++) {
                     let cls = 'nav-dot';
                     if (i === currentIndex) cls += ' active';
-                    if (userAnswers[i] !== null) cls += ' answered';
+                    if (userAnswers[i] !== null && userAnswers[i] !== '') cls += ' answered';
                     html += `<span class="${cls}" title="Q${i+1}"></span>`;
                 }
                 navDots.innerHTML = html;
@@ -605,14 +606,11 @@
                 updateProgressUI();
             }
 
-            // ──────────────────────────────────────
-            // RENDER QUESTION
-            // ──────────────────────────────────────
             function renderQuestion(index) {
                 const q = questions[index];
                 const saved = getSavedAnswer(index);
                 let html = '';
-                html += `<div class="question-number">Question ${q.id} &bull; ${q.type.toUpperCase()}</div>`;
+                html += `<div class="question-number">Question ${q.id} • ${q.type.toUpperCase()}</div>`;
                 html += `<div class="question-text">${q.question}</div>`;
 
                 if (q.type === 'mcq') {
@@ -621,11 +619,11 @@
                     q.options.forEach((opt, i) => {
                         const selected = (saved === i) ? ' selected' : '';
                         html += `
-                                <li class="option-item${selected}" data-opt-index="${i}" data-q-index="${index}">
-                                    <div class="option-radio"></div>
-                                    <span class="option-label">${labels[i]}.</span>
-                                    <span class="option-text">${opt}</span>
-                                </li>`;
+                            <li class="option-item${selected}" data-opt-index="${i}" data-q-index="${index}">
+                                <div class="option-radio"></div>
+                                <span class="option-label">${labels[i]}.</span>
+                                <span class="option-text">${opt}</span>
+                            </li>`;
                     });
                     html += '</ul>';
                 } else if (q.type === 'tf') {
@@ -636,14 +634,12 @@
                     ];
                     tfOptions.forEach(opt => {
                         const selected = (saved === opt.val) ? ' selected' : '';
-                        html +=
-                            `<div class="tf-btn${selected}" data-tf-val="${opt.val}" data-q-index="${index}">${opt.label}</div>`;
+                        html += `<div class="tf-btn${selected}" data-tf-val="${opt.val}" data-q-index="${index}">${opt.label}</div>`;
                     });
                     html += '</div>';
                 } else if (q.type === 'fill') {
                     const val = (saved !== null) ? saved : '';
-                    html +=
-                        `<input type="text" class="fill-input" id="fillInput" data-q-index="${index}" placeholder="Type your answer here..." value="${escapeHtml(val)}" autocomplete="off">`;
+                    html += `<input type="text" class="fill-input" id="fillInput" data-q-index="${index}" placeholder="Type your answer..." value="${escapeHtml(val)}" autocomplete="off">`;
                 }
 
                 examBody.innerHTML = html;
@@ -661,20 +657,19 @@
             function attachEventListeners(index) {
                 const q = questions[index];
 
-                // MCQ option clicks
+                // MCQ
                 const optionItems = examBody.querySelectorAll('.option-item');
                 optionItems.forEach(item => {
                     item.addEventListener('click', function() {
                         if (examSubmitted) return;
                         const optIndex = parseInt(this.dataset.optIndex);
-                        // Update visual selection
                         optionItems.forEach(el => el.classList.remove('selected'));
                         this.classList.add('selected');
                         saveAnswer(index, optIndex);
                     });
                 });
 
-                // True/False button clicks
+                // True/False
                 const tfBtns = examBody.querySelectorAll('.tf-btn');
                 tfBtns.forEach(btn => {
                     btn.addEventListener('click', function() {
@@ -686,21 +681,17 @@
                     });
                 });
 
-                // Fill-in-the-blank input
+                // Fill-in-the-blank
                 const fillInput = examBody.querySelector('#fillInput');
                 if (fillInput) {
                     fillInput.addEventListener('input', function() {
                         if (examSubmitted) return;
                         saveAnswer(index, this.value.trim());
                     });
-                    // Auto-focus
                     setTimeout(() => fillInput.focus(), 100);
                 }
             }
 
-            // ──────────────────────────────────────
-            // NAVIGATION
-            // ──────────────────────────────────────
             function goToQuestion(index) {
                 if (index < 0 || index >= totalQuestions) return;
                 currentIndex = index;
@@ -714,9 +705,6 @@
                 if (currentIndex < totalQuestions - 1) goToQuestion(currentIndex + 1);
             });
 
-            // ──────────────────────────────────────
-            // SUBMIT & RESULTS
-            // ──────────────────────────────────────
             function calculateScore() {
                 let correct = 0;
                 const details = [];
@@ -731,8 +719,7 @@
                         if (userAns === null || userAns === '') {
                             isCorrect = false;
                         } else {
-                            isCorrect = (userAns.toString().trim().toLowerCase() === q.answer.toString()
-                                .trim().toLowerCase());
+                            isCorrect = (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase());
                         }
                     }
                     if (isCorrect) correct++;
@@ -746,29 +733,24 @@
                 const percent = Math.round((correct / total) * 100);
                 let grade = '';
                 let emoji = '';
-                if (percent >= 90) { grade = 'Excellent! 🎉';
-                    emoji = '🏆'; } else if (percent >= 70) { grade = 'Good Job! 👍';
-                    emoji = '😊'; } else if (percent >= 50) { grade = 'Not Bad! 📚';
-                    emoji = '🤔'; } else { grade = 'Keep Studying! 💪';
-                    emoji = '📖'; }
+                if (percent >= 90) { grade = 'Excellent! ; }
+                else if (percent >= 70) { grade = 'Good Job! ; }
+                else if (percent >= 50) { grade = 'Not Bad! }
+                else { grade = 'Keep Studying! ' }
 
                 let html = '';
                 html += `<span class="emoji-big">${emoji}</span>`;
-                html +=
-                    `<div class="score-circle" style="--score-percent:${percent}%;background:conic-gradient(#22c55e ${percent}%, #e2e8f0 ${percent}%);"><span>${percent}%</span></div>`;
+                html += `<div class="score-circle" style="--score-percent:${percent}%;"><span>${percent}%</span></div>`;
                 html += `<div class="results-grade">${grade}</div>`;
-                html +=
-                    `<div class="results-detail">You answered <strong>${correct} out of ${total}</strong> questions correctly.<br>Time remaining: <strong>${formatTime(timeRemaining)}</strong></div>`;
+                html += `<div class="results-detail">You answered <strong>${correct} out of ${total}</strong> questions correctly.<br>Time remaining: <strong>${formatTime(timeRemaining)}</strong></div>`;
 
-                // Per-question feedback
-                html +=
-                    '<div style="text-align:left;margin-top:20px;max-height:300px;overflow-y:auto;padding-right:8px;">';
+                html += '<div style="text-align:left;margin-top:20px;max-height:300px;overflow-y:auto;padding-right:8px;">';
                 details.forEach((d, i) => {
                     const icon = d.isCorrect ? '✅' : '❌';
                     const bgColor = d.isCorrect ? '#f0fdf4' : '#fef2f2';
                     const borderColor = d.isCorrect ? '#22c55e' : '#ef4444';
-                    let correctAnswerStr = '';
                     const q = d.question;
+                    let correctAnswerStr = '';
                     if (q.type === 'mcq') correctAnswerStr = q.options[q.answer];
                     else if (q.type === 'tf') correctAnswerStr = q.answer ? 'True' : 'False';
                     else correctAnswerStr = q.answer;
@@ -781,16 +763,14 @@
                     }
 
                     html += `
-                            <div style="background:${bgColor};border-left:4px solid ${borderColor};border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:0.9rem;">
-                                <strong>Q${i+1}:</strong> ${q.question}<br>
-                                <span style="color:#64748b;">Your answer:</span> ${userAnswerStr}<br>
-                                <span style="color:#64748b;">Correct answer:</span> ${correctAnswerStr} ${icon}
-                            </div>`;
+                        <div style="background:${bgColor};border-left:4px solid ${borderColor};border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:0.9rem;">
+                            <strong>Q${i+1}:</strong> ${q.question}<br>
+                            <span style="color:#64748b;">Your answer:</span> ${userAnswerStr}<br>
+                            <span style="color:#64748b;">Correct answer:</span> ${correctAnswerStr} ${icon}
+                        </div>`;
                 });
                 html += '</div>';
-
-                html +=
-                    `<button class="btn btn-outline" onclick="location.reload()" style="margin-top:20px;">🔄 Retake Exam</button>`;
+                html += `<button class="btn btn-outline" onclick="location.reload()" style="margin-top:20px;">🔄 Retake Exam</button>`;
 
                 resultsScreen.innerHTML = html;
                 examBody.style.display = 'none';
@@ -805,7 +785,6 @@
                 clearInterval(timerInterval);
                 const scoreData = calculateScore();
                 renderResults(scoreData);
-                // Update timer box
                 timerBox.classList.remove('warning');
                 timerDisplay.textContent = formatTime(timeRemaining);
             }
@@ -813,16 +792,12 @@
             btnSubmit.addEventListener('click', () => {
                 const unanswered = userAnswers.filter(a => a === null || a === '').length;
                 if (unanswered > 0) {
-                    const confirmSubmit = confirm(
-                        `You have ${unanswered} unanswered question(s). Are you sure you want to submit?`);
+                    const confirmSubmit = confirm(`You have ${unanswered} unanswered question(s). Are you sure you want to submit?`);
                     if (!confirmSubmit) return;
                 }
                 submitExam();
             });
 
-            // ──────────────────────────────────────
-            // TIMER
-            // ──────────────────────────────────────
             function startTimer() {
                 updateTimerUI();
                 timerInterval = setInterval(() => {
@@ -830,15 +805,12 @@
                     updateTimerUI();
                     if (timeRemaining <= 0) {
                         clearInterval(timerInterval);
-                        alert('⏰ Time is up! Your exam will be submitted automatically.');
+                        alert('Time is up! Your exam will be submitted automatically.');
                         submitExam();
                     }
                 }, 1000);
             }
 
-            // ──────────────────────────────────────
-            // KEYBOARD NAVIGATION
-            // ──────────────────────────────────────
             document.addEventListener('keydown', function(e) {
                 if (examSubmitted) return;
                 if (e.key === 'ArrowLeft' && currentIndex > 0) {
@@ -851,7 +823,6 @@
                     e.preventDefault();
                     btnSubmit.click();
                 }
-                // MCQ keyboard shortcuts: 1-4 or A-D
                 const q = questions[currentIndex];
                 if (q.type === 'mcq' && !examSubmitted) {
                     const keyMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, '1': 0, '2': 1, '3': 2, '4': 3 };
@@ -859,7 +830,6 @@
                     if (idx !== undefined && idx < q.options.length) {
                         e.preventDefault();
                         saveAnswer(currentIndex, idx);
-                        // Update visual
                         const items = examBody.querySelectorAll('.option-item');
                         items.forEach(el => el.classList.remove('selected'));
                         if (items[idx]) items[idx].classList.add('selected');
@@ -885,9 +855,6 @@
                 }
             });
 
-            // ──────────────────────────────────────
-            // INIT
-            // ──────────────────────────────────────
             function initExam() {
                 currentIndex = 0;
                 userAnswers = new Array(totalQuestions).fill(null);
@@ -903,7 +870,7 @@
             }
 
             initExam();
-            console.log('📝 Exam ready! Use arrow keys to navigate, A-D/1-4 for MCQ, T/F for True/False.');
+            console.log('HTML Exam ready! Use arrow keys, A-D/1-4 for MCQ, T/F for True/False.');
         })();
     </script>
 </body>
