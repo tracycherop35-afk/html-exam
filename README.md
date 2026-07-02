@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧑‍💻 C++ Exam – Functions, Objects & Methods</title>
+    <title>C++ Exam</title>
     <style>
         :root {
             --bg: #f0f4f8;
@@ -179,18 +179,18 @@
 </head>
 <body>
     <div id="loginScreen" class="login-screen">
-        <h2>🧑‍💻 Student Details</h2>
-        <div class="form-group"><label>Full Name</label><input type="text" id="studentName" placeholder="e.g. John Doe" required></div>
-        <div class="form-group"><label>Admission Number</label><input type="text" id="studentAdmission" placeholder="e.g. ADM1234" required></div>
-        <div class="form-group"><label>Course</label><input type="text" id="studentCourse" placeholder="e.g. Computer Science" required></div>
+        <h2>Student Details</h2>
+        <div class="form-group"><label>Full Name</label><input type="text" id="studentName"  required></div>
+        <div class="form-group"><label>Admission Number</label><input type="text" id="studentAdmission" required></div>
+        <div class="form-group"><label>Course</label><input type="text" id="studentCourse" required></div>
         <div class="form-group"><label>Year</label><input type="text" id="studentYear" placeholder="e.g. 2" required></div>
-        <div class="form-group"><label>Unit Code</label><input type="text" id="studentUnit" placeholder="e.g. CS101" required></div>
-        <div class="form-group"><label>Email (for results copy)</label><input type="email" id="studentEmail" placeholder="student@example.com"></div>
+        <div class="form-group"><label>Unit Code</label><input type="text" id="studentUnit" required></div>
+        <div class="form-group"><label>Email (for results copy)</label><input type="email" id="studentEmail"></div>
         <button class="btn-login" id="btnLogin">Continue to Exam</button>
     </div>
 
     <div id="lockScreen" class="lock-screen">
-        <h2>🔒 Secure Exam Environment</h2>
+        <h2>Secure Exam Environment</h2>
         <p>Full‑screen mode required.<br>Do not switch tabs or exit full‑screen.<br>3 violations = auto‑submit.</p>
         <button class="btn-lock" id="btnLock">Lock & Start Exam</button>
     </div>
@@ -198,14 +198,14 @@
     <div class="exam-container" id="examContainer">
         <div class="exam-header">
             <div class="title-area">
-                <h1>🛠️ C++ Exam – Functions, Objects & Methods</h1>
-                <div class="subtitle">100 Questions • 1h30min • Functions, Classes, Constructors, Overloading & more</div>
+                <h1>C++ Exam</h1>
+                <div class="subtitle">130 Questions • 1h50min • Functions, Classes, Constructors, Overloading & more</div>
             </div>
-            <div class="timer-box" id="timerBox"><span>⏱</span> <span id="timerDisplay">1:30:00</span></div>
+            <div class="timer-box" id="timerBox"><span>⏱</span> <span id="timerDisplay">1:50:00</span></div>
         </div>
         <div class="progress-wrap">
             <div class="progress-info">
-                <span id="progressLabel">Question 1 of 100</span>
+                <span id="progressLabel">Question 1 of 130</span>
                 <span id="answeredCount">0 answered</span>
             </div>
             <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -229,7 +229,6 @@
     <script>
     window.addEventListener('DOMContentLoaded', function() {
         try {
-            // ── TEACHER CONFIGURATION ──
             const TEACHER = {
                 email: 'psam3a@gmail.com',
                 emailjs: {
@@ -240,9 +239,9 @@
                 webcamEnabled: false
             };
 
-            // ── FULL QUESTIONS POOL (100 items) ──
+            // ── 130 QUESTIONS (65 MCQ + 30 TF + 35 Short Answer) ──
             const QUESTIONS_POOL = [
-                // Section A : MCQ (50)
+                // Section A : MCQ (65) – including extra class‑focused questions
                 { id:1, section:'A', type:'mcq', question:'Which of the following is a valid function declaration?', options:['int add(int a, int b);','function add(int a, int b);','def add(int a, int b);','add(int a, int b);'], answer:0 },
                 { id:2, section:'A', type:'mcq', question:'What does the "void" return type mean?', options:['The function returns an integer','The function returns nothing','The function returns a float','The function is a constructor'], answer:1 },
                 { id:3, section:'A', type:'mcq', question:'How do you call a function named "display" with no arguments?', options:['display();','call display();','display;','display(void);'], answer:0 },
@@ -252,7 +251,7 @@
                 { id:7, section:'A', type:'mcq', question:'What is a default argument?', options:['An argument that must always be provided','An argument that has a predefined value if not supplied','An argument passed automatically by the compiler','The first argument of a function'], answer:1 },
                 { id:8, section:'A', type:'mcq', question:'Which statement about inline functions is correct?', options:['They are always expanded inline','They are a request to the compiler for inline expansion','They cannot have loops','They must be defined inside a class'], answer:1 },
                 { id:9, section:'A', type:'mcq', question:'What is recursion?', options:['A function calling itself','A loop inside a function','A function that returns a pointer','A function with no parameters'], answer:0 },
-                { id:10, section:'A', type:'mcq', question:'Which of the following is a correct class definition?', options:['class MyClass { int x; void show(); };','MyClass class { int x; void show(); };','class MyClass: { int x; };','struct MyClass { int x; void show(); }; (This is also valid, but the question expects class)'], answer:0 },
+                { id:10, section:'A', type:'mcq', question:'Which of the following is a correct class definition?', options:['class MyClass { int x; void show(); };','MyClass class { int x; void show(); };','class MyClass: { int x; };','struct MyClass { int x; void show(); };'], answer:0 },
                 { id:11, section:'A', type:'mcq', question:'What is an object?', options:['A variable of a class type','A function inside a class','A pointer to a class','A constant member'], answer:0 },
                 { id:12, section:'A', type:'mcq', question:'How do you access a public member function of an object named "obj"?', options:['obj.func();','obj->func();','obj::func();','obj:func();'], answer:0 },
                 { id:13, section:'A', type:'mcq', question:'Which access specifier makes members accessible from anywhere?', options:['private','protected','public','static'], answer:2 },
@@ -293,92 +292,124 @@
                 { id:48, section:'A', type:'mcq', question:'What is the purpose of the "delete" keyword?', options:['To deallocate memory allocated by new','To call the destructor','To destroy an object','Both A and C'], answer:3 },
                 { id:49, section:'A', type:'mcq', question:'Which of the following is a correct way to pass an object to a function by value?', options:['void func(MyClass obj)','void func(MyClass &obj)','void func(const MyClass &obj)','void func(MyClass *obj)'], answer:0 },
                 { id:50, section:'A', type:'mcq', question:'What is the benefit of passing objects by const reference?', options:['It avoids copying and prevents modification','It makes the object mutable','It is the only way to pass objects','It forces a deep copy'], answer:0 },
+                // Extra class‑focused MCQs (51-65)
+                { id:51, section:'A', type:'mcq', question:'What is a pure virtual function?', options:['A function with no implementation','A virtual function that must be overridden','A static function','A friend function'], answer:1 },
+                { id:52, section:'A', type:'mcq', question:'What does the "override" keyword indicate?', options:['The function is intended to override a virtual function','The function is hidden','The function is overloaded','The function is static'], answer:0 },
+                { id:53, section:'A', type:'mcq', question:'How many parameters does a default constructor take?', options:['None','One','Two','It depends'], answer:0 },
+                { id:54, section:'A', type:'mcq', question:'Can a constructor be private?', options:['Yes','No','Only if the class has a friend','Only in C++11'], answer:0 },
+                { id:55, section:'A', type:'mcq', question:'What is the difference between a deep copy and a shallow copy?', options:['Deep copy duplicates the entire object and its resources','Shallow copy duplicates everything','They are the same','Deep copy only copies pointers'], answer:0 },
+                { id:56, section:'A', type:'mcq', question:'What is a friend class?', options:['A class that can access private members of another class','A class defined inside another class','A derived class','A base class'], answer:0 },
+                { id:57, section:'A', type:'mcq', question:'Which of the following is true about a const object?', options:['It can only call const member functions','It cannot be instantiated','It cannot be passed to functions','It must be static'], answer:0 },
+                { id:58, section:'A', type:'mcq', question:'What is the return type of a destructor?', options:['void','int','None','~ClassName'], answer:2 },
+                { id:59, section:'A', type:'mcq', question:'When is a copy constructor called?', options:['When an object is passed by value','When an object is deleted','When a static object is created','When a function returns a reference'], answer:0 },
+                { id:60, section:'A', type:'mcq', question:'What is the purpose of the "using" directive?', options:['To bring names from a namespace into scope','To define a new namespace','To import a library','To alias a type'], answer:0 },
+                { id:61, section:'A', type:'mcq', question:'What is a static data member of a class?', options:['A variable shared by all instances of the class','A member that cannot be modified','A member that is only accessible inside the class','A member that is initialized inside the constructor'], answer:0 },
+                { id:62, section:'A', type:'mcq', question:'How do you declare a friend function inside a class?', options:['friend void func();','void friend func();','void func() friend;','friend func();'], answer:0 },
+                { id:63, section:'A', type:'mcq', question:'What is the difference between class and struct in C++ regarding inheritance?', options:['Struct inheritance is public by default, class is private','There is no difference','Struct cannot be inherited','Class cannot be inherited'], answer:0 },
+                { id:64, section:'A', type:'mcq', question:'Which of the following is true about a nested class?', options:['It is a class defined inside another class','It cannot access members of the outer class','It must be public','It cannot have constructors'], answer:0 },
+                { id:65, section:'A', type:'mcq', question:'What is the correct way to initialize a const member "x" in a class using a constructor?', options:['MyClass(int val) : x(val) {}','MyClass(int val) { x = val; }','MyClass(int val) : x = val {}','MyClass(int val) { x(val); }'], answer:0 },
 
-                // Section B : True/False (25)
-                { id:51, section:'B', type:'tf', question:'A function can be overloaded based on return type alone.', answer:false },
-                { id:52, section:'B', type:'tf', question:'Inline functions guarantee faster execution.', answer:false },
-                { id:53, section:'B', type:'tf', question:'A constructor can return a value.', answer:false },
-                { id:54, section:'B', type:'tf', question:'A destructor can be overloaded.', answer:false },
-                { id:55, section:'B', type:'tf', question:'Static member functions can access non-static data members directly.', answer:false },
-                { id:56, section:'B', type:'tf', question:'A friend function is a member of the class.', answer:false },
-                { id:57, section:'B', type:'tf', question:'A class can have multiple constructors.', answer:true },
-                { id:58, section:'B', type:'tf', question:'The default constructor is called even if you define a parameterized constructor.', answer:false },
-                { id:59, section:'B', type:'tf', question:'Objects are passed by value by default.', answer:true },
-                { id:60, section:'B', type:'tf', question:'A const member function can modify static data members.', answer:true },
-                { id:61, section:'B', type:'tf', question:'The "this" pointer is available only inside non-static member functions.', answer:true },
-                { id:62, section:'B', type:'tf', question:'A protected member is accessible from anywhere.', answer:false },
-                { id:63, section:'B', type:'tf', question:'Inheritance allows code reusability.', answer:true },
-                { id:64, section:'B', type:'tf', question:'A derived class can access private members of its base class directly.', answer:false },
-                { id:65, section:'B', type:'tf', question:'The "final" keyword can be applied to a class to prevent inheritance.', answer:true },
-                { id:66, section:'B', type:'tf', question:'A copy constructor is called when an object is passed by value.', answer:true },
-                { id:67, section:'B', type:'tf', question:'A static data member must be defined outside the class.', answer:true },
-                { id:68, section:'B', type:'tf', question:'The "explicit" keyword prevents a constructor from being used for implicit conversions.', answer:true },
-                { id:69, section:'B', type:'tf', question:'A member function defined inside the class is automatically inline.', answer:true },
-                { id:70, section:'B', type:'tf', question:'A derived class destructor is called before the base class destructor.', answer:true },
-                { id:71, section:'B', type:'tf', question:'A static member variable is shared by all objects of the class.', answer:true },
-                { id:72, section:'B', type:'tf', question:'A function can return an object.', answer:true },
-                { id:73, section:'B', type:'tf', question:'The "delete" operator calls the destructor.', answer:true },
-                { id:74, section:'B', type:'tf', question:'A default constructor is provided by the compiler only if no constructors are defined.', answer:true },
-                { id:75, section:'B', type:'tf', question:'A class can have multiple destructors.', answer:false },
+                // Section B : True/False (30) – increased from 25, including class‑related
+                { id:66, section:'B', type:'tf', question:'A function can be overloaded based on return type alone.', answer:false },
+                { id:67, section:'B', type:'tf', question:'Inline functions guarantee faster execution.', answer:false },
+                { id:68, section:'B', type:'tf', question:'A constructor can return a value.', answer:false },
+                { id:69, section:'B', type:'tf', question:'A destructor can be overloaded.', answer:false },
+                { id:70, section:'B', type:'tf', question:'Static member functions can access non-static data members directly.', answer:false },
+                { id:71, section:'B', type:'tf', question:'A friend function is a member of the class.', answer:false },
+                { id:72, section:'B', type:'tf', question:'A class can have multiple constructors.', answer:true },
+                { id:73, section:'B', type:'tf', question:'The default constructor is called even if you define a parameterized constructor.', answer:false },
+                { id:74, section:'B', type:'tf', question:'Objects are passed by value by default.', answer:true },
+                { id:75, section:'B', type:'tf', question:'A const member function can modify static data members.', answer:true },
+                { id:76, section:'B', type:'tf', question:'The "this" pointer is available only inside non-static member functions.', answer:true },
+                { id:77, section:'B', type:'tf', question:'A protected member is accessible from anywhere.', answer:false },
+                { id:78, section:'B', type:'tf', question:'Inheritance allows code reusability.', answer:true },
+                { id:79, section:'B', type:'tf', question:'A derived class can access private members of its base class directly.', answer:false },
+                { id:80, section:'B', type:'tf', question:'The "final" keyword can be applied to a class to prevent inheritance.', answer:true },
+                { id:81, section:'B', type:'tf', question:'A copy constructor is called when an object is passed by value.', answer:true },
+                { id:82, section:'B', type:'tf', question:'A static data member must be defined outside the class.', answer:true },
+                { id:83, section:'B', type:'tf', question:'The "explicit" keyword prevents a constructor from being used for implicit conversions.', answer:true },
+                { id:84, section:'B', type:'tf', question:'A member function defined inside the class is automatically inline.', answer:true },
+                { id:85, section:'B', type:'tf', question:'A derived class destructor is called before the base class destructor.', answer:true },
+                { id:86, section:'B', type:'tf', question:'A static member variable is shared by all objects of the class.', answer:true },
+                { id:87, section:'B', type:'tf', question:'A function can return an object.', answer:true },
+                { id:88, section:'B', type:'tf', question:'The "delete" operator calls the destructor.', answer:true },
+                { id:89, section:'B', type:'tf', question:'A default constructor is provided by the compiler only if no constructors are defined.', answer:true },
+                { id:90, section:'B', type:'tf', question:'A class can have multiple destructors.', answer:false },
+                // Additional T/F about classes
+                { id:91, section:'B', type:'tf', question:'A friend class can access all members of another class.', answer:true },
+                { id:92, section:'B', type:'tf', question:'A const object can only call const member functions.', answer:true },
+                { id:93, section:'B', type:'tf', question:'A copy constructor creates a deep copy by default.', answer:false },
+                { id:94, section:'B', type:'tf', question:'Virtual functions enable runtime polymorphism.', answer:true },
+                { id:95, section:'B', type:'tf', question:'The "override" keyword is mandatory when overriding virtual functions.', answer:false },
 
-                // Section C : Short Answer (25)
-                { id:76, section:'C', type:'fill', question:'Keyword to define a function that returns nothing.', answer:'void' },
-                { id:77, section:'C', type:'fill', question:'Write the syntax to call a function named "run" with no arguments.', answer:'run();' },
-                { id:78, section:'C', type:'fill', question:'What is the default parameter passing mechanism in C++?', answer:'pass by value' },
-                { id:79, section:'C', type:'fill', question:'Keyword to declare a function that cannot be overridden (C++11).', answer:'final' },
-                { id:80, section:'C', type:'fill', question:'What is the name of the special member function that initializes objects?', answer:'constructor' },
-                { id:81, section:'C', type:'fill', question:'What symbol is used before the class name in a destructor declaration?', answer:'~' },
-                { id:82, section:'C', type:'fill', question:'Keyword to define a static member function.', answer:'static' },
-                { id:83, section:'C', type:'fill', question:'What is the scope resolution operator?', answer:'::' },
-                { id:84, section:'C', type:'fill', question:'Write the keyword that gives a non-member function access to private members.', answer:'friend' },
-                { id:85, section:'C', type:'fill', question:'What is the default access specifier for members of a class?', answer:'private' },
-                { id:86, section:'C', type:'fill', question:'What is the default access specifier for members of a struct?', answer:'public' },
-                { id:87, section:'C', type:'fill', question:'Keyword to prevent a constructor from implicit conversions.', answer:'explicit' },
-                { id:88, section:'C', type:'fill', question:'What is the name of the pointer that refers to the current object inside a member function?', answer:'this' },
-                { id:89, section:'C', type:'fill', question:'How many copy constructors can a class have?', answer:'one' },
-                { id:90, section:'C', type:'fill', question:'Write the default constructor declaration for a class named "Dog".', answer:'Dog();' },
-                { id:91, section:'C', type:'fill', question:'Which keyword is used to create a derived class? (in the declaration)', answer:'public' },
-                { id:92, section:'C', type:'fill', question:'What is the term for a function that calls itself?', answer:'recursion' },
-                { id:93, section:'C', type:'fill', question:'Write the syntax to define a member function "getX" of class "Point" outside the class.', answer:'int Point::getX()' },
-                { id:94, section:'C', type:'fill', question:'What is the default return type of a constructor?', answer:'none' },
-                { id:95, section:'C', type:'fill', question:'Which keyword is used to allocate memory for an object dynamically?', answer:'new' },
-                { id:96, section:'C', type:'fill', question:'What is the access specifier that allows members to be inherited but not accessible from outside?', answer:'protected' },
-                { id:97, section:'C', type:'fill', question:'Write the declaration of a constant member function named "display" that returns void.', answer:'void display() const;' },
-                { id:98, section:'C', type:'fill', question:'What is the term for defining multiple functions with the same name but different parameters?', answer:'function overloading' },
-                { id:99, section:'C', type:'fill', question:'What is the maximum number of destructors a class can have?', answer:'1' },
-                { id:100, section:'C', type:'fill', question:'Write the keyword to define an inline function explicitly.', answer:'inline' }
+                // Section C : Short Answer (35) – increased from 30, with more class topics
+                { id:96, section:'C', type:'fill', question:'Keyword to define a function that returns nothing.', answer:'void' },
+                { id:97, section:'C', type:'fill', question:'Write the syntax to call a function named "run" with no arguments.', answer:'run();' },
+                { id:98, section:'C', type:'fill', question:'What is the default parameter passing mechanism in C++?', answer:'pass by value' },
+                { id:99, section:'C', type:'fill', question:'Keyword to declare a function that cannot be overridden (C++11).', answer:'final' },
+                { id:100, section:'C', type:'fill', question:'What is the name of the special member function that initializes objects?', answer:'constructor' },
+                { id:101, section:'C', type:'fill', question:'What symbol is used before the class name in a destructor declaration?', answer:'~' },
+                { id:102, section:'C', type:'fill', question:'Keyword to define a static member function.', answer:'static' },
+                { id:103, section:'C', type:'fill', question:'What is the scope resolution operator?', answer:'::' },
+                { id:104, section:'C', type:'fill', question:'Write the keyword that gives a non-member function access to private members.', answer:'friend' },
+                { id:105, section:'C', type:'fill', question:'What is the default access specifier for members of a class?', answer:'private' },
+                { id:106, section:'C', type:'fill', question:'What is the default access specifier for members of a struct?', answer:'public' },
+                { id:107, section:'C', type:'fill', question:'Keyword to prevent a constructor from implicit conversions.', answer:'explicit' },
+                { id:108, section:'C', type:'fill', question:'What is the name of the pointer that refers to the current object inside a member function?', answer:'this' },
+                { id:109, section:'C', type:'fill', question:'How many copy constructors can a class have?', answer:'one' },
+                { id:110, section:'C', type:'fill', question:'Write the default constructor declaration for a class named "Dog".', answer:'Dog();' },
+                { id:111, section:'C', type:'fill', question:'Which keyword is used to create a derived class? (in the declaration)', answer:'public' },
+                { id:112, section:'C', type:'fill', question:'What is the term for a function that calls itself?', answer:'recursion' },
+                { id:113, section:'C', type:'fill', question:'Write the syntax to define a member function "getX" of class "Point" outside the class.', answer:'int Point::getX()' },
+                { id:114, section:'C', type:'fill', question:'What is the default return type of a constructor?', answer:'none' },
+                { id:115, section:'C', type:'fill', question:'Which keyword is used to allocate memory for an object dynamically?', answer:'new' },
+                { id:116, section:'C', type:'fill', question:'What is the access specifier that allows members to be inherited but not accessible from outside?', answer:'protected' },
+                { id:117, section:'C', type:'fill', question:'Write the declaration of a constant member function named "display" that returns void.', answer:'void display() const;' },
+                { id:118, section:'C', type:'fill', question:'What is the term for defining multiple functions with the same name but different parameters?', answer:'function overloading' },
+                { id:119, section:'C', type:'fill', question:'What is the maximum number of destructors a class can have?', answer:'1' },
+                { id:120, section:'C', type:'fill', question:'Write the keyword to define an inline function explicitly.', answer:'inline' },
+                // Additional short‑answer class questions
+                { id:121, section:'C', type:'fill', question:'What keyword is used to declare a virtual function?', answer:'virtual' },
+                { id:122, section:'C', type:'fill', question:'What is the function called when an object goes out of scope?', answer:'destructor' },
+                { id:123, section:'C', type:'fill', question:'Write the declaration of a pure virtual function in a base class.', answer:'virtual void func() = 0;' },
+                { id:124, section:'C', type:'fill', question:'What is the term for a class that cannot be instantiated?', answer:'abstract class' },
+                { id:125, section:'C', type:'fill', question:'Keyword to explicitly mark a member function as overriding a base class virtual function.', answer:'override' },
+                { id:126, section:'C', type:'fill', question:'What is a static member variable of a class?', answer:'shared variable' },
+                { id:127, section:'C', type:'fill', question:'How do you declare a friend class inside another class?', answer:'friend class ClassName;' },
+                { id:128, section:'C', type:'fill', question:'What is the default access level for members of a class defined with the keyword "class"?', answer:'private' },
+                { id:129, section:'C', type:'fill', question:'Write the syntax to define a constructor with an initializer list for class "A" with member "x".', answer:'A(int val) : x(val) {}' },
+                { id:130, section:'C', type:'fill', question:'What does the "this" pointer point to inside a member function?', answer:'the current object' }
             ];
 
-            // Randomize within sections, shuffle answer choices
+            // Shuffle within sections
             const shuffleArray = (arr) => {
                 for (let i = arr.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [arr[i], arr[j]] = [arr[j], arr[i]];
                 }
             };
-
             const QUESTIONS = [];
-            const sectionA = QUESTIONS_POOL.filter(q => q.section === 'A');
-            const sectionB = QUESTIONS_POOL.filter(q => q.section === 'B');
-            const sectionC = QUESTIONS_POOL.filter(q => q.section === 'C');
-            shuffleArray(sectionA); shuffleArray(sectionB); shuffleArray(sectionC);
+            const secA = QUESTIONS_POOL.filter(q => q.section === 'A');
+            const secB = QUESTIONS_POOL.filter(q => q.section === 'B');
+            const secC = QUESTIONS_POOL.filter(q => q.section === 'C');
+            shuffleArray(secA); shuffleArray(secB); shuffleArray(secC);
             let qCounter = 1;
-            [sectionA, sectionB, sectionC].forEach(sectionArr => {
-                sectionArr.forEach(q => {
+            [secA, secB, secC].forEach(arr => {
+                arr.forEach(q => {
                     q.displayId = qCounter++;
                     if (q.type === 'mcq' && q.options) {
-                        const correctOption = q.options[q.answer];
+                        const correct = q.options[q.answer];
                         const indices = q.options.map((_, i) => i);
                         shuffleArray(indices);
                         q.options = indices.map(i => q.options[i]);
-                        q.answer = q.options.indexOf(correctOption);
+                        q.answer = q.options.indexOf(correct);
                     }
                     QUESTIONS.push(q);
                 });
             });
 
             const TOTAL_QUESTIONS = QUESTIONS.length;
-            const EXAM_TIME = 90 * 60; // 1 hour 30 minutes
+            const EXAM_TIME = 110 * 60; // 1h50m
 
             const state = {
                 currentIndex: 0,
@@ -485,7 +516,7 @@
                     saveProgress();
                     if (state.timeRemaining <= 0) {
                         clearInterval(state.timerInterval);
-                        alert('⏰ Time is up! Your exam will be submitted automatically.');
+                        alert('⏰ Time is up!');
                         submitExam();
                     }
                 }, 1000);
@@ -514,17 +545,17 @@
             }
 
             function saveProgress() {
-                localStorage.setItem('cppExamFunctionsProgress', JSON.stringify({
+                localStorage.setItem('cppClassExam130', JSON.stringify({
                     answers: state.answers,
                     timeRemaining: state.timeRemaining,
                     currentIndex: state.currentIndex,
                     infractions: state.infractions,
                     student: state.student,
-                    startTime: state.startTime ? state.startTime.toISOString() : null
+                    startTime: state.startTime?.toISOString()
                 }));
             }
             function loadProgress() {
-                const saved = localStorage.getItem('cppExamFunctionsProgress');
+                const saved = localStorage.getItem('cppClassExam130');
                 if (!saved) return false;
                 try {
                     const data = JSON.parse(saved);
@@ -540,7 +571,7 @@
                 } catch(e) {}
                 return false;
             }
-            function clearProgress() { localStorage.removeItem('cppExamFunctionsProgress'); }
+            function clearProgress() { localStorage.removeItem('cppClassExam130'); }
 
             function goToQuestion(index) {
                 if (index < 0 || index >= TOTAL_QUESTIONS) return;
@@ -568,7 +599,7 @@
                 const q = QUESTIONS[state.currentIndex];
                 const saved = state.answers[state.currentIndex];
                 let html = '';
-                const sectionNames = { A:'Multiple Choice (1-50)', B:'True / False (51-75)', C:'Short Answer (76-100)' };
+                const sectionNames = { A:'Multiple Choice (1-65)', B:'True / False (66-95)', C:'Short Answer (96-130)' };
                 html += `<div class="section-header">Section ${q.section}: ${sectionNames[q.section]}</div>`;
                 html += `<div class="question-text">${q.displayId}. ${escapeHTML(q.question)}</div>`;
 
@@ -725,11 +756,8 @@
                 return text;
             }
 
-            // Initialize EmailJS
             if (typeof emailjs !== 'undefined') {
                 emailjs.init(TEACHER.emailjs.publicKey);
-            } else {
-                console.warn('EmailJS library not loaded');
             }
 
             async function sendEmail(scoreData) {
@@ -788,7 +816,7 @@
                 const attempted = state.answers.filter(a => a !== null && a !== '').length;
                 const skipped = TOTAL_QUESTIONS - attempted;
                 const wrong = attempted - correct;
-                let html = `<span class="emoji-big">${percent>=90?'🏆':percent>=70?'😊':percent>=50?'🤔':'📖'}</span>`;
+                let html = `<span class="emoji-big">${percent>=90?:percent>=70?:percent>=50?'}</span>`;
                 html += `<div class="score-circle" style="--score-percent:${percent}%;"><span>${percent}%</span></div>`;
                 html += `<h2>Grade: ${grade}</h2>`;
                 html += `<p>You scored ${correct} out of ${TOTAL_QUESTIONS} (${percent}%)</p>`;
@@ -922,9 +950,9 @@
                 }
             });
 
-            console.log('✅ Functions, Objects & Methods exam loaded successfully.');
+            console.log('✅ 130-question Functions, Objects, Methods & Classes exam loaded.');
         } catch (error) {
-            alert('❌ A problem occurred while setting up the exam. Please copy this error:\n\n' + error.message + '\n\nStack: ' + error.stack);
+            alert('❌ Error setting up exam:\n' + error.message + '\n\nStack: ' + error.stack);
             console.error(error);
         }
     });
